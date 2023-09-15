@@ -17,6 +17,10 @@ group "default" {
   targets = ["pixelfed-0-11-9"]
 }
 
+group "pixelfed" {
+  targets = ["pixelfed-0-11-9"]
+}
+
 target "pixelfed-0-11-9" {
   args = {
     "PIXELFED_VERSION" = "0.11.9"
