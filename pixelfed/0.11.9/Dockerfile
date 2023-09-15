@@ -8,7 +8,7 @@ RUN rm -rf /app/.git* /app/.ddev /app/.circleci /app/tests
 
 RUN composer install --no-ansi --no-interaction --optimize-autoloader --no-dev --no-progress --ignore-platform-reqs
 
-FROM php:8.2.10-fpm-bookworm
+FROM php:8.2.10-apache-bookworm
 
 LABEL org.opencontainers.image.description="Pixelfed is a free and ethical photo sharing platform, powered by ActivityPub federation."
 LABEL org.opencontainers.image.licenses=AGPL-3.0-only
@@ -72,9 +72,21 @@ RUN cp contrib/docker/php.production.ini "${PHP_INI_DIR}/php.ini"
 
 RUN php artisan horizon:publish
 
+RUN a2enmod rewrite remoteip && \
+    {\
+     echo RemoteIPHeader X-Real-IP ;\
+     echo RemoteIPTrustedProxy 10.0.0.0/8 ;\
+     echo RemoteIPTrustedProxy 172.16.0.0/12 ;\
+     echo RemoteIPTrustedProxy 192.168.0.0/16 ;\
+     echo SetEnvIf X-Forwarded-Proto "https" HTTPS=on ;\
+    } > /etc/apache2/conf-available/remoteip.conf && \
+    a2enconf remoteip
+
 RUN docker-php-source delete && \
     apt-get autoremove --purge -y && \
     apt-get clean && \
     rm -rf /var/cache/apt /var/lib/apt/lists/ /var/www/html/
 
-CMD ["/var/www/contrib/docker/start.fpm.sh"]
+RUN ln -s public html
+
+CMD ["/var/www/contrib/docker/start.apache.sh"]
