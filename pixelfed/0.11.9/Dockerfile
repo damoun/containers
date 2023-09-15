@@ -1,4 +1,4 @@
-FROM composer:2.6.2 as composer
+FROM composer:2.6.2@sha256:a8847e8317196aac538d532866a7ea67155aff42af729743c1394e3ed894a39f as composer
 
 ARG PIXELFED_VERSION=0.11.9
 
@@ -8,7 +8,7 @@ RUN rm -rf /app/.git* /app/.ddev /app/.circleci /app/tests
 
 RUN composer install --no-ansi --no-interaction --optimize-autoloader --no-dev --no-progress --ignore-platform-reqs
 
-FROM php:8.2.10-apache-bookworm
+FROM php:8.2.10-apache-bookworm@sha256:8a9bedf4d5f48ad7a33dd1613d65c6f134d0821bcab8fd4ca6e4a7382fed16a3
 
 LABEL org.opencontainers.image.description="Pixelfed is a free and ethical photo sharing platform, powered by ActivityPub federation."
 LABEL org.opencontainers.image.licenses=AGPL-3.0-only
