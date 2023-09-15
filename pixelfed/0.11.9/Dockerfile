@@ -10,9 +10,8 @@ RUN composer install --no-ansi --no-interaction --optimize-autoloader --no-dev -
 
 FROM php:8.2.10-fpm-bookworm
 
-LABEL org.opencontainers.image.description="Pixelfed is free and ethical photo sharing platform, powered by ActivityPub federation."
+LABEL org.opencontainers.image.description="Pixelfed is a free and ethical photo sharing platform, powered by ActivityPub federation."
 LABEL org.opencontainers.image.licenses=AGPL-3.0-only
-LABEL org.opencontainers.image.version=${PIXELFED_VERSION}
 
 WORKDIR /var/www/
 

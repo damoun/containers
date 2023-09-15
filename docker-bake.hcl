@@ -25,6 +25,9 @@ target "pixelfed-0-11-9" {
   args = {
     "PIXELFED_VERSION" = "0.11.9"
   }
+  labels = {
+    "org.opencontainers.image.version" = "0.11.9"
+  }
   context = "pixelfed/0.11.9"
   tags = ["${REGISTRY}/pixelfed:0.11.9", "${REGISTRY}/pixelfed:latest"]
   inherits = ["base"]
