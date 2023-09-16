@@ -8,7 +8,7 @@ RUN rm -rf /app/.git* /app/.ddev /app/.circleci /app/tests
 
 RUN composer install --no-ansi --no-interaction --optimize-autoloader --no-dev --no-progress --ignore-platform-reqs
 
-FROM php:8.2.10-fpm-bookworm@sha256:d22d0c44b717337490881dc61f5f04fa60ae3cafa4df93ed3fb0f7144a2ce9e2
+FROM php:8.2.10-apache-bookworm
 
 LABEL org.opencontainers.image.description="Pixelfed is a free and ethical photo sharing platform, powered by ActivityPub federation."
 LABEL org.opencontainers.image.licenses=AGPL-3.0-only
@@ -77,4 +77,4 @@ RUN docker-php-source delete && \
 
 RUN chown -R www-data:www-data /var/www/
 
-CMD ["/var/www/contrib/docker/start.fpm.sh"]
+CMD ["/var/www/contrib/docker/start.apache.sh"]
