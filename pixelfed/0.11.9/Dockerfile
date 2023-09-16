@@ -17,8 +17,6 @@ WORKDIR /var/www/
 
 COPY --from=composer /app /var/www/
 
-RUN chown -R www-data:www-data /var/www/
-
 RUN apt-get update
 RUN apt-get dist-upgrade -y
 RUN apt-get install -y --no-install-recommends \
@@ -76,5 +74,7 @@ RUN docker-php-source delete && \
     apt-get autoremove --purge -y && \
     apt-get clean && \
     rm -rf /var/cache/apt /var/lib/apt/lists/ /var/www/html/
+
+RUN chown -R www-data:www-data /var/www/
 
 CMD ["/var/www/contrib/docker/start.fpm.sh"]
