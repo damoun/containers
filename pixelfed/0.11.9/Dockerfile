@@ -85,7 +85,7 @@ RUN docker-php-source delete && \
     apt-get clean && \
     rm -rf /var/cache/apt /var/lib/apt/lists/ /var/www/html/
 
-RUN mv public html
+RUN sed -i 's/\/var\/www\/html/\/var\/www\/public/g' /etc/apache2/sites-enabled/000-default.conf
 
 RUN chown -R www-data:www-data /var/www/
 
