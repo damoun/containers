@@ -85,6 +85,8 @@ RUN docker-php-source delete && \
     apt-get clean && \
     rm -rf /var/cache/apt /var/lib/apt/lists/ /var/www/html/
 
+RUN mv public html
+
 RUN chown -R www-data:www-data /var/www/
 
 CMD ["/var/www/contrib/docker/start.apache.sh"]
