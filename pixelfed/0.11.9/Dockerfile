@@ -65,6 +65,16 @@ RUN docker-php-ext-configure intl
 RUN docker-php-ext-install -j$(nproc) gd pdo_mysql pdo_pgsql \
       pdo_sqlite intl bcmath zip pcntl exif curl
 
+RUN a2enmod rewrite remoteip && \
+    {\
+      echo RemoteIPHeader X-Real-IP ;\
+      echo RemoteIPTrustedProxy 10.0.0.0/8 ;\
+      echo RemoteIPTrustedProxy 172.16.0.0/12 ;\
+      echo RemoteIPTrustedProxy 192.168.0.0/16 ;\
+      echo SetEnvIf X-Forwarded-Proto "https" HTTPS=on ;\
+    } > /etc/apache2/conf-available/remoteip.conf && \
+    a2enconf remoteip
+
 RUN cp -r storage storage.skel
 RUN cp contrib/docker/php.production.ini "${PHP_INI_DIR}/php.ini"
 
