@@ -8,7 +8,7 @@ RUN rm -rf /app/.git* /app/.ddev /app/.circleci /app/tests
 
 RUN composer install --no-ansi --no-interaction --optimize-autoloader --no-dev --no-progress --ignore-platform-reqs
 
-FROM php:8.3.0-apache-bookworm@sha256:8281e439f1407ff597edd6c1c7aa184261fbee6428133094ecb1cbf60aabdfc6
+FROM php:8.3.0-apache-bookworm@sha256:0497b44a7619b7b88662097760c404d4f3fe810f74a9febe09fced71072212c0
 
 LABEL org.opencontainers.image.description="Pixelfed is a free and ethical photo sharing platform, powered by ActivityPub federation."
 LABEL org.opencontainers.image.licenses=AGPL-3.0-only
