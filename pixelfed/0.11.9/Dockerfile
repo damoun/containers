@@ -1,4 +1,4 @@
-FROM composer:2.7.1@sha256:da5213f1c0c4db435ad335be4e782ebf8677b45d37677a6db1e73e474c7ad947 as composer
+FROM composer:2.7.6@sha256:f8174c15479f5b45d6127daab0e618e760427b8cbcc2129818d50d70993e6ad2 as composer
 
 ARG PIXELFED_VERSION=0.11.9
 
