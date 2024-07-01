@@ -14,7 +14,7 @@ target "base" {
 }
 
 group "default" {
-  targets = ["pixelfed-0-11-9"]
+  targets = []
 }
 
 group "pixelfed" {
