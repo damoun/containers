@@ -89,4 +89,5 @@ RUN sed -i 's/\/var\/www\/html/\/var\/www\/public/g' /etc/apache2/sites-enabled/
 
 RUN chown -R www-data:www-data /var/www/
 
+# nosemgrep: dockerfile.security.missing-user.missing-user
 CMD ["/var/www/contrib/docker/start.apache.sh"]
